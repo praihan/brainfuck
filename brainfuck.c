@@ -8,7 +8,7 @@
 #include <stdio.h> /* putchar, getchar, fprintf, FILE functions */
 #include <string.h> /* memset */
 
-/*  */
+/* Seems more canonical */
 typedef char byte;
 /* From the brainfuck specification */
 #define MAX_BRAINFUCK 30000 /* !!! */
@@ -19,20 +19,21 @@ typedef char byte;
  */
 struct brainfuck_t
 {
-	/** a pointer to "the pointer". A pointer to the pointer is kept so
-	  * that this object may be passed around by value while still allowing
-	  * to increment both "the pointer" and "the pointer"'s value,
-	  */
+	/**
+	 * A pointer to "the pointer". A pointer to the pointer is kept so
+	 * that this object may be passed around by value while still allowing
+	 * to increment both "the pointer" and "the pointer"'s value,
+	 */
 	byte** the_pointer;
 
 	/**
-	 * a function pointer that should specify how to handle output.
+	 * A function pointer that should specify how to handle output.
 	 * i.e. the '.' instruction.
 	 */
 	int(*output)(int);
 
 	/**
-	 * a function pointer that should specify how to handle input.
+	 * A function pointer that should specify how to handle input.
 	 * i.e. the ',' instruction.
 	 */
 	int(*input)(void);
@@ -50,14 +51,14 @@ struct brainfuck_t
 static int do_brainfuck(const char* code, size_t n);
 
 /**
-* Execute a block of brainfuck code.
-*
-* @param code      pointer to the first character in the block of code
-* @param n         number of characters to read and execute
-* @param brainfuck context info
-*
-* @return an error code. Non-zero means something went wrong.
-*/
+ * Execute a block of brainfuck code.
+ *
+ * @param code      pointer to the first character in the block of code
+ * @param n         number of characters to read and execute
+ * @param brainfuck context info
+ *
+ * @return an error code. Non-zero means something went wrong.
+ */
 static int do_brainfuck_block(const char* code, size_t n, struct brainfuck_t* brainfuck);
 
 
@@ -114,8 +115,8 @@ static int do_brainfuck_block(const char* code, size_t n, struct brainfuck_t* br
 {
 	size_t cnt = 0;
 	/*
-	   Pointer to the byte that is immediately after n bytes.
-	   i.e. we only read blocks that are less than end.
+	 * Pointer to the byte that is immediately after n bytes.
+	 * i.e. we only read blocks that are less than end.
 	 */
 	const char* end = code + n;
 	/* Just because I'm lazy */
